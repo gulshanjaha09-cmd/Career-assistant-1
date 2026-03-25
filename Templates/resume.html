@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Resume Analyzer</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+<h2><i class="fa-solid fa-graduation-cap"></i> Smart Career Assistant</h2>
+
+<div>
+<a href="/">Home</a>
+<a href="/resume">Resume Analyzer</a>
+<a href="/internships">Internships</a>
+<a href="/apply">Apply</a>
+<a href="/contact">Contact</a>
+<a href="#" onclick="logout()">Logout</a>
+</div>
+</nav>
+
+<div class="container">
+<div id="analyzerSection">
+<h1 class="resume-title" style="text-align:center;margin-top:40px;">Upload Your Resume</h1>
+
+<div class="resume-info"></div>
+<div class="card">
+
+<form id="uploadForm" enctype="multipart/form-data">
+
+<input type="file" id="resumeFile" name="resume" required>
+<input type="file" id="certFile" name="cert" required>
+
+<br>
+
+<center>
+<button type="button" class="btn-blue" onclick="uploadFiles()">
+Analyze Resume
+</button>
+</center>
+
+</form>
+<br>
+<center>
+<button class="btn-blue" onclick="verifyDocs()">
+ Verify 
+</button>
+</center>
+
+<p id="verifyResult" style="text-align:center;"></p>
+<center><h3>Analysis Result</h3>
+
+<p id="score"></p>
+<p id="skills"></p>
+<p id="suggestion"></p>
+
+</center>
+
+<br><br>
+<center>
+<p>Don't have a resume?</p>
+<a href="#" onclick="showCreateResume()">Create one right here</a></center>
+</div>
+</div>
+<div id="createResumeSection" style="display:none;">
+
+<h1 class="resume-title" style="text-align:center;">Create Resume</h1>
+
+<div class="card1">
+
+             <span class="section-label full-width">PRIMARY DETAILS</span>
+             <input type="text" id="name" placeholder="Full Name" class="full-width">
+                    <input type="email" id="email" placeholder="Email Address">
+                    <input type="text" id="phone" placeholder="Phone Number">
+                    <input type="text" id="linkedin" placeholder="LinkedIn Profile Link" class="full-width">
+                    <span class="section-label full-width">EDUCATION</span>
+                    <input type="text" id="degree" placeholder="Highest Degree (e.g. B.Tech)">
+                    <input type="text" id="college" placeholder="College/University">
+                    <input type="text" id="year" placeholder="Year of Passing">
+                    <input type="text" id="cgpa"placeholder="CGPA/Percentage">
+                    <span class="section-label full-width">PROFESSIONAL DETAILS</span>
+                    <input type="text" id="skill" placeholder="Key Skills (e.g. Python, SQL, React)" class="full-width">
+                    <textarea id="experience" placeholder="Work Experience / Internships Summary" class="full-width" rows="3"></textarea>
+                    <span class="section-label full-width">SECONDARY DETAILS</span>
+                    <input type="text" id="project" placeholder="Project Name" class="full-width">
+                    <textarea id="projectdesc" placeholder="Project Description" class="full-width" rows="2"></textarea>
+                    <input type="text" id="certifications" placeholder="Certifications (e.g. AWS, Cisco)">
+                    <input type="text" id="languages" placeholder="Languages Known">
+
+<div class="full-width" style="text-align:center;">
+<button onclick="generateResume()" class="btn-blue1" style="margin-top: 10px; width: 40%;">
+Generate Resume
+</button>
+</div>
+
+<div class="full-width" style="text-align:center;">
+<button onclick="location.reload()" class="btn-blue1" style="width: 23%;">Back to upload</button>
+</div>
+
+<div id="resumeOutput"></div>
+
+</div>
+</div>
+</div>
+
+<script>
+
+if(localStorage.getItem("loggedIn")!=="true"){
+window.location.href="/login";
+}
+
+function logout(){
+
+localStorage.clear();
+
+alert("Logged Out Successfully");
+
+window.location.href="/login";
+
+}
+
+function uploadFiles(){
+
+    let formData = new FormData(document.getElementById("uploadForm"));
+
+    fetch("http://127.0.0.1:8000/verify", {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("score").innerHTML = data.result;
+        document.getElementById("skills").innerHTML = data.details;
+    });
+
+}
+
+function generateResume(){
+
+var name=document.getElementById("name").value;
+var email=document.getElementById("email").value;
+var phone=document.getElementById("phone").value;
+var linkedin=document.getElementById("linkedin").value;
+
+var degree=document.getElementById("degree").value;
+var college=document.getElementById("college").value;
+var year=document.getElementById("year").value;
+var cgpa=document.getElementById("cgpa").value;
+
+var skill=document.getElementById("skill").value;
+var experience=document.getElementById("experience").value;
+
+var project=document.getElementById("project").value;
+var projectdesc=document.getElementById("projectdesc").value;
+
+var certifications=document.getElementById("certifications").value;
+var languages=document.getElementById("languages").value;
+
+var resumeHTML=`
+
+<h2 style="color:#2563eb;">${name}</h2>
+
+<p><b>Email:</b> ${email}</p>
+<p><b>Phone:</b> ${phone}</p>
+<p><b>LinkedIn:</b> ${linkedin}</p>
+
+<hr>
+
+<h3>Education</h3>
+<p>${degree} - ${college}</p>
+<p>Year: ${year} | CGPA: ${cgpa}</p>
+
+<hr>
+
+<h3>Skills</h3>
+<p>${skill}</p>
+
+<hr>
+
+<h3>Experience</h3>
+<p>${experience}</p>
+
+<hr>
+
+<h3>Projects</h3>
+<p><b>${project}</b></p>
+<p>${projectdesc}</p>
+
+<hr>
+
+<h3>Certifications</h3>
+<p>${certifications}</p>
+
+<hr>
+
+<h3>Languages</h3>
+<p>${languages}</p>
+
+`;
+
+document.getElementById("resumeOutput").innerHTML=resumeHTML;
+
+}
+
+function showCreateResume(){
+document.getElementById("analyzerSection").style.display="none";
+document.getElementById("createResumeSection").style.display="block";
+
+}
+
+function verifyDocs(){
+
+    let formData = new FormData();
+
+    formData.append("resume", document.getElementById("resumeFile").files[0]);
+    formData.append("cert", document.getElementById("certFile").files[0]);
+
+    fetch("http://127.0.0.1:8000/verify", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("verifyResult").innerHTML =
+            "<b>Verification:</b> " + data.result +
+        "<br><br><b>AI Analysis:</b> " + data.analysis +
+        "<br><br><b>Resume Data:</b> " + JSON.stringify(data.resume_data) +
+        "<br><b>Certificate Data:</b> " + JSON.stringify(data.certificate_data);
+    });
+}
+</script>
+</body>
+  </html>
