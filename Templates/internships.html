@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Internships</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+<h2><i class="fa-solid fa-graduation-cap"></i> Smart Career Assistant</h2>
+
+<div>
+<a href="/">Home</a>
+<a href="/resume">Resume Analyzer</a>
+<a href="/internships">Internships</a>
+<a href="/apply">Apply</a>
+<a href="/contact">Contact</a>
+<a href="#" onclick="logout()">Logout</a>
+</div>
+
+</nav>
+<div class="container">
+
+<h1 class="internship-title" style="text-align:center;margin-top:40px;">Available Internships</h1>
+
+<div class="internship-info"></div>
+
+<ul>
+
+<li onclick="window.location.href='/apply'">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+Web Development Intern – Remote
+</li>
+
+<li onclick="window.location.href='/apply'">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Google">
+Data Analyst Intern – Bangalore
+</li>
+
+<li onclick="window.location.href='/apply'">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Google">
+Software Engineer Intern – Hyderabad
+</li>
+
+</ul>
+<script>
+
+if(localStorage.getItem("loggedIn")!=="true"){
+window.location.href="/login";
+}
+
+</script>
+<script>
+
+function logout(){
+
+localStorage.clear();
+
+alert("Logged Out Successfully");
+
+window.location.href="/login";
+
+}
+
+</script>
+</body>
+</html>
