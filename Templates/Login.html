@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Login</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+<h2><i class="fa-solid fa-graduation-cap"></i> Smart Career Assistant</h2>
+
+<div>
+<a href="/login">Login</a>
+<a href="/register">Register</a>
+</div>
+</nav>
+
+<div class="container">
+
+<h1 style="text-align:center;margin-top:40px;">Login</h1>
+
+<div class="card">
+
+<input type="text" id="loginName" placeholder="Enter Username">
+
+<input type="password" id="loginPassword" placeholder="Enter Password">
+
+<center>
+
+<button class="btn-blue" onclick="login()">
+Login
+</button>
+
+</center>
+
+<br>
+
+<center>
+No account?
+<a href="/register">Register</a>
+</center>
+
+</div>
+
+</div>
+
+<script>
+
+function login(){
+
+var name=document.getElementById("loginName").value.trim();
+var password=document.getElementById("loginPassword").value.trim();
+
+if(name=="" || password==""){
+    alert("Please enter username and password");
+    return;
+}
+
+var storedName=localStorage.getItem("name");
+var storedPassword=localStorage.getItem("password");
+
+if(name==storedName && password==storedPassword){
+
+alert("Login Successful");
+
+localStorage.setItem("loggedIn","true");
+
+window.location.href="/";
+
+}
+
+else{
+
+alert("Invalid Login Details");
+
+}
+
+}
+
+</script>
+
+</body>
+  </html>
