@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Contact</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+<h2><i class="fa-solid fa-graduation-cap"></i> Smart Career Assistant</h2>
+
+<div>
+<a href="/">Home</a>
+<a href="/resume">Resume Analyzer</a>
+<a href="/internships">Internships</a>
+<a href="/apply">Apply</a>
+<a href="/contact">Contact</a>
+<a href="#" onclick="logout()">Logout</a>
+</div>
+</nav>
+
+<h1 class="contact-title" style="text-align:center;margin-top:40px;">
+Contact Us
+</h1>
+
+<div class="card">
+
+<div class="contact-info">
+
+<p><i class="fa-solid fa-envelope"></i> <b>Email:</b> info@careerassistant.com</p>
+
+<p><i class="fa-solid fa-phone"></i> <b>Phone:</b> +91 9876543210</p>
+
+</div>
+
+<input type="text" placeholder="Your Name">
+
+<input type="email" placeholder="Your Email">
+
+<textarea placeholder="Your Message"></textarea>
+
+<center><button class="btn-blue">Send</button></center>
+
+</div>
+
+<footer class="footer">
+© 2026 Smart Career Assistant
+</footer>
+<script>
+
+if(localStorage.getItem("loggedIn")!=="true"){
+window.location.href="/login";
+}
+
+function logout(){
+
+localStorage.clear();
+
+alert("Logged Out Successfully");
+
+window.location.href="/login";
+
+}
+
+</script>
+</body>
+</html>
