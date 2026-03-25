@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Register</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+<h2><i class="fa-solid fa-graduation-cap"></i> Smart Career Assistant</h2>
+
+<div>
+<a href="/login">Login</a>
+<a href="/register">Register</a>
+</div>
+</nav>
+
+<div class="container">
+
+<h1 style="text-align:center;margin-top:40px;">Register</h1>
+
+<div class="card">
+
+<input type="text" id="name" placeholder="Enter Username">
+
+<input type="email" id="email" placeholder="Enter Email">
+
+<input type="password" id="password" placeholder="Enter Password">
+
+<center>
+<button class="btn-blue" onclick="register()">
+Register
+</button>
+</center>
+
+<br>
+
+<center>
+Already have account?
+<a href="/login">Login</a>
+</center>
+
+</div>
+
+</div>
+
+<script>
+
+function register(){
+
+var name=document.getElementById("name").value.trim();
+var email=document.getElementById("email").value.trim();
+var password=document.getElementById("password").value.trim();
+
+if(name=="" || email=="" || password==""){
+
+alert("Please fill all fields");
+return;
+
+}
+
+if(password.length < 8){
+    alert("Password must be at least 8 characters");
+    return;
+}
+
+localStorage.setItem("name",name);
+localStorage.setItem("email",email);
+localStorage.setItem("password",password);
+
+alert("Registration Successful");
+
+window.location.href="/login";
+
+}
+
+</script>
+
+</body>
+  </html>
