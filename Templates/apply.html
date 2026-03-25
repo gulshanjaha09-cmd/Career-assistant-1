@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Apply Internship</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+<h2><i class="fa-solid fa-graduation-cap"></i> Smart Career Assistant</h2>
+
+<div>
+<a href="/">Home</a>
+<a href="/resume">Resume Analyzer</a>
+<a href="/internships">Internships</a>
+<a href="/apply">Apply</a>
+<a href="/contact">Contact</a>
+<a href="#" onclick="logout()">Logout</a>
+</div>
+</nav>
+
+<div class="container">
+
+<h1 class="internship-title" style="text-align:center;margin-top:40px;">Apply for Internship</h1>
+
+<div class="internship-info"></div>
+
+<div class="card">
+
+<input type="text" placeholder="Enter your name">
+
+<input type="email" placeholder="Email">
+
+<input type="text" placeholder="College">
+
+<input type="file">
+
+<center><button class="btn-blue" onclick="submitApp()">
+Apply Now
+</button>
+</center>
+
+</div>
+
+<script>
+function submitApp(){
+alert("Application Submitted Successfully!");
+}
+
+if(localStorage.getItem("loggedIn")!=="true"){
+window.location.href="/login";
+}
+
+function logout(){
+
+localStorage.clear();
+
+alert("Logged Out Successfully");
+
+window.location.href="/login";
+
+}
+
+</script>
+</body>
+</html>
