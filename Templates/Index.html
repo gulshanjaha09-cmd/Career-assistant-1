@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Smart Career Assistant</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+
+<h2><i class="fa-solid fa-graduation-cap"></i> Smart Career Assistant</h2>
+
+<div>
+<a href="/">Home</a>
+<a href="/resume">Resume Analyzer</a>
+<a href="/internships">Internships</a>
+<a href="/apply">Apply</a>
+<a href="/contact">Contact</a>
+<a href="/login">Login</a>
+<a href="/register">Register</a>
+<a href="#" onclick="logout()">Logout</a>
+</div>
+
+</nav>
+
+<div class="hero">
+
+<div class="hero-text">
+<h1 class="main-title">Smart Career Assistant</h1>
+
+<p>Improve your resume and find internships easily.</p>
+
+<div class="hero-buttons">
+
+<a href="/resume">
+<button class="btn-blue">
+<i class="fa-solid fa-file-lines"></i> Analyze Resume
+</button>
+</a>
+
+<a href="/internships">
+<button class="btn-blue">
+<i class="fa-solid fa-briefcase"></i> Find Internships
+</button>
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="250" alt="Career Illtstration">
+
+</div>
+
+</div>
+<hr style="width:60%;margin:40px auto;border:1px solid rgba(255,255,255,0.2);">
+<div class="features">
+
+<div class="feature-box">
+<h3><i class="fa-solid fa-file-lines"></i>&nbsp; Resume Analysis</h3>
+<p>Upload your resume and get skill analysis instantly.</p>
+</div>
+
+<div class="feature-box">
+<h3><i class="fa-solid fa-briefcase"></i>&nbsp; Internship Finder</h3>
+<p>Find internships from top companies.</p>
+</div>
+
+<div class="feature-box">
+<h3><i class="fa-solid fa-chart-line"></i>&nbsp; Career Improvement</h3>
+<p>Improve skills and build a better resume.</p>
+</div>
+
+</div>
+
+<footer class="footer">
+© 2026 Smart Career Assistant
+</footer>
+
+<script>
+if(localStorage.getItem("loggedIn")!=="true"){
+
+window.location.href="/login";
+
+}
+
+window.addEventListener("DOMContentLoaded", function(){
+if(localStorage.getItem("loggedIn")==="true"){
+
+document.querySelector('a[href="/login"]').style.display="none";
+document.querySelector('a[href="/register"]').style.display="none";
+}
+});
+
+
+function logout(){
+
+localStorage.clear();
+
+alert("Logged Out Successfully");
+
+window.location.href="/login";
+
+}
+
+window.onload = function(){
+    var loader = document.getElementById("loader");
+    if(loader){
+        loader.style.display = "none";
+    }
+}
+</script>
+</body>
+  </html>
